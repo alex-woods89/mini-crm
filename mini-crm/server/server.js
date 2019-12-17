@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const path = require('path');
+const parser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
-const createRouter = require('./helpers/create_router.js');
+const createRouter = require('./helpers/createRouter.js');
 
 app.use(cors())
 app.use(parser.json())
@@ -23,5 +23,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(3000, function(){
-    console.log("ap is listening on port 3000")
+    console.log("app is listening on port 3000")
 })
