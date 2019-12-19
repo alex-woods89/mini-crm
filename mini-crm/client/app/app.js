@@ -1,14 +1,30 @@
-'use strict';
+var myApp = angular.module('myApp', []);
 
-// Declare app level module which depends on views, and core components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) {
+    $scope.name = "Bob";
+    
+    $scope.names = ["bob", "sarah"];
+    
+    $scope.handle = '';
+    
+    $scope.pushToNames = function(){
+        $scope.names.push($scope.handle)
+        console.log($scope.names)
+        console.log($scope.candidates)
+       
+        
+    }
+    
+    $scope.candidates = []
+    
+   $http({
+  method: 'GET',
+  url: 'http://localhost:3000/api/candidates'
+}).then(function successCallback(response) {
+    $scope.candidates = response.data
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+    
 }]);

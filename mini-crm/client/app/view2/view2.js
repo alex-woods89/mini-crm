@@ -1,31 +1,35 @@
-'use strict';
+var myApp = angular.module('myApp', []);
 
-angular.module('myApp.view2', ['ngRoute'])
-
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: function candidateController(){
-      this.candidates = [
-        {name: "Alex"},
-        {name: "Bob"},
-        {name: "Tony"}
-      ]
+myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) {
+    $scope.name = "Bob";
+    
+    $scope.names = ["bob", "sarah"];
+    
+    $scope.handle = '';
+    
+    $scope.pushToNames = function(){
+        $scope.names.push($scope.handle)
+        console.log($scope.names)
+        console.log($scope.beers)
+        
     }
-  
-  
-  //     ['$http', '$scope', function candidateController($http){
-  //     var self = this
-  //     $http.get('http://localhost:3000/api/candidates')
-  //     .then(function(response){
-  //       self.candidates = response.data
-  //       console.log(self.candidates)
-  //     })
-  //   }
-  // ]
+    
+    $scope.beers = []
+    
+   $http({
+  method: 'GET',
+  url: 'https://api.punkapi.com/v2/beers'
+}).then(function successCallback(response) {
+    $scope.beers = response.data
+  }, function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
   });
-}])
+    
+}]);
 
-.controller('View2Ctrl', [function() {
+
+.controller('View2Ctrl', [function($scope) {
+  $scope.candidates=["Bob", "trish"]
 
 }]);
