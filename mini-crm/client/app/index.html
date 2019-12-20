@@ -24,16 +24,25 @@
                 
                 <input type="text" ng-model="handle"/>
                 
-                <button type="submit" ng-click="pushToNames()">push</button>
+                <button type="button" ng-click="pushToNames()">push</button>
                 
                 
                 <h1>{{handle}}</h1>
+
+                <h1> All the candidates</h1>
                 
                 <div ng-repeat="candidate in candidates">
-                    <h1>{{candidate.name}}</h1>
-                    <h1>{{candidate.job}}</h1>
-                
+                  <ul>
+                    <li>{{candidate.name}}  {{candidate.job}}</li>             
+                  </ul>
                 </div>
+
+                <input type="text" ng-model="name">Add Name</input>
+              </br>
+                <input type="text" ng-model="job">Add Job</input>
+                <button ng-click="addRule()">post candidate</button>
+
+                
                 
                 
             </div>
