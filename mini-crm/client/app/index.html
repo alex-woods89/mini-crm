@@ -30,7 +30,20 @@
                 <h1>{{handle}}</h1>
 
                 <h1> All the candidates</h1>
+
                 
+                  <form name="myForm">
+                    <label for="mySelect">Make a choice:</label>
+                    <select name="mySelect" id="mySelect"
+                      ng-options="candidate.name for candidate in candidates track by candidate._id"
+                      ng-model="selectedCandidate"></select>
+                  </form>
+                  <hr>
+                  <h1>{{selectedCandidate.name}}  {{selectedCandidate.job}}</h1>
+                
+                 <button ng-click="delete()">Delete</button>
+
+
                 <div ng-repeat="candidate in candidates">
                   <ul>
                     <li>{{candidate.name}}  {{candidate.job}}</li>             
@@ -40,7 +53,7 @@
                 <input type="text" ng-model="name">Add Name</input>
               </br>
                 <input type="text" ng-model="job">Add Job</input>
-                <button ng-click="addRule()">post candidate</button>
+                <button ng-click="addCandidate()">post candidate</button>
 
                 
                 
