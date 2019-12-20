@@ -18,14 +18,18 @@ myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) 
       
         $http.post('http://localhost:3000/api/candidates', {name: $scope.name, job:$scope.job})
         .then(function successCallback(response){
+          
           $http({
             method: 'GET',
             url: 'http://localhost:3000/api/candidates'
           }).then(function successCallback(response) {
               $scope.candidates = response.data
+              
             }, function errorCallback(response) {
               console.error(error)
             });
+            $scope.name = ''
+          $scope.job = ''
         })
 
     }
