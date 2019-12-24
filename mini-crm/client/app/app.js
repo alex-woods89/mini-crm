@@ -13,24 +13,18 @@ myApp.config(function ($routeProvider) {
         templateUrl: 'pages/second.html',
         controller: 'secondController'
     })
+
+    .when('/third', {
+        templateUrl:'pages/third.html',
+        controller: 'thirdController'
+    })
     
 });
 
 myApp.controller('mainController', ['$scope', '$log', '$http', function($scope, $log, $http) {
     
-    $scope.name = ''
-    $scope.job = ''
-    
-    $scope.names = ["bob", "sarah"];
+
     $scope.selectedCandidate = {}
-    
-    $scope.handle = '';
-    
-    $scope.pushToNames = function(){
-        $scope.names.push($scope.handle)
-        $scope.handle = ''
-    }
-    
     $scope.candidates = []
 
     $scope.addCandidate = function(){
@@ -88,3 +82,19 @@ myApp.controller('secondController', ['$scope', '$log', '$http', function($scope
 
     
 }]);
+
+myApp.controller('thirdController', ['$scope', function($scope){
+    $scope.name = ''
+    $scope.job = ''
+    
+    $scope.names = ["bob", "sarah"];
+    
+    
+    $scope.handle = '';
+    
+    $scope.pushToNames = function(){
+        $scope.names.push($scope.handle)
+        $scope.handle = ''
+    }
+
+}])

@@ -1,10 +1,5 @@
 <h1>All the companies</h1>
 
-<ul>
-    <li ng-repeat="company in companies">
-        {{company.name}}
-    </li>
-</ul>
 
 <select class="form-control" name="companySelect" id="companySelect"
 ng-options="company.name for company in companies track by company._id"
