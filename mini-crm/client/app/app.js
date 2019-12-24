@@ -26,13 +26,21 @@ myApp.controller('mainController', ['$scope', '$log', '$http', function($scope, 
 
     $scope.selectedCandidate = {}
     $scope.candidates = []
+    $scope.name = ''
+    $scope.job = ''
+    $scope.phone = ''
+    $scope.email = ''
+    $scope.salary = ''
 
     $scope.addCandidate = function(){
       
-        $http.post('http://localhost:3000/api/candidates', {name: $scope.name, job:$scope.job})
+        $http.post('http://localhost:3000/api/candidates', {name: $scope.name, job:$scope.job, phone:$scope.phone, email:$scope.email, salary:$scope.salary})
         .then(get(),
         $scope.name = '',
-            $scope.job = '')
+            $scope.job = '',
+            $scope.phone = '',
+            $scope.email = '',
+            $scope.salary = '')
 
     }         
     

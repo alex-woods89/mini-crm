@@ -3,24 +3,56 @@
     
       <form name="myForm">
         <label for="mySelect">Make a choice:</label>
-        <select name="mySelect" id="mySelect"
+        <select class="form-control" name="mySelect" id="mySelect"
           ng-options="candidate.name for candidate in candidates track by candidate._id"
           ng-model="selectedCandidate"></select>
       </form>
-      <hr>
-      <h1>Name: {{selectedCandidate.name}} Job: {{selectedCandidate.job}}</h1>
+     
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Job</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Salary</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>{{selectedCandidate.name}}</td>
+                  <td>{{selectedCandidate.job}}</td>
+                  <td>{{selectedCandidate.phone}}</td>
+                  <td>{{selectedCandidate.email}}</td>
+                  <td>{{selectedCandidate.salary}}</td>
+                  <td><button ng-click="delete()">Delete</button></td>
+              </tr>
+          </tbody>
+
+      </table>
     
-     <button ng-click="delete()">Delete</button>
+     
 
-
+<!-- 
     <div ng-repeat="candidate in candidates">
       <ul>
         <li>Name: {{candidate.name}} Job: {{candidate.job}}</li>             
       </ul>
-    </div>
-
+    </div> -->
+    <form  id="candidateForm">
+    <h1>Add a candidate</h1>
     <input type="text" ng-model="name">Add Name</input>
   </br>
     <input type="text" ng-model="job">Add Job</input>
+</br>
+<input type="text" ng-model="phone">Add Phone</input>
+</br>
+<input type="text" ng-model="email">Add Email</input>
+</br>
+<input type="text" ng-model="salary">Add Salary</input>
+</br>
+    
     <button ng-click="addCandidate()">post candidate</button>
+</form>
 
