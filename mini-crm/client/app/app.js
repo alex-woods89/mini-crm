@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
+
+
 
 myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) {
     $scope.name = ''
@@ -53,3 +55,22 @@ myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) 
    
     
 }]);
+
+
+myApp.controller('secondController', ['$scope', function($scope){
+
+   $scope.companyName = "sally"
+
+}])
+
+myApp.config(function ($routeProvider){
+  $routeProvider
+  .when('/candidates', {
+    templateUrl: 'candidates.html',
+    controller: 'mainController'
+  })
+  .when('/companies', {
+    templateUrl: 'companies.html',
+    controller: 'secondController'
+  })
+})
