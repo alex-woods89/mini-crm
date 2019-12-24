@@ -74,13 +74,14 @@ myApp.controller('mainController', ['$scope', '$log', '$http', function($scope, 
 myApp.controller('secondController', ['$scope', '$log', '$http', function($scope, $log, $http) {
     
     $scope.companies = []
+    $scope.selectedCompany = {}
 
     $http({
         method: 'GET',
         url: 'http://localhost:3000/api/companies'
       }).then(function successCallback(response) {
           $scope.companies = response.data
-        }, function errorCallback(response) {
+        }, function errorCallback() {
           console.error(error)
         });
 

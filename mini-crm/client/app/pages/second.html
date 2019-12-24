@@ -5,3 +5,27 @@
         {{company.name}}
     </li>
 </ul>
+
+<select class="form-control" name="companySelect" id="companySelect"
+ng-options="company.name for company in companies track by company._id"
+ng-model="selectedCompany" ></select>
+
+<table class="table">
+    <thead>
+<tr>
+    <th scope="col">Company Name</th>
+    <th scope="col">Company Phone</th>
+    <th scope="col">Company Contact</th>
+    <th scope="col">Company Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>{{selectedCompany.name}}</td>
+    <td>{{selectedCompany.phone}}</td>
+    <td>{{selectedCompany.contact}}</td>
+    <td>{{selectedCompany.email}}</td>
+</tr>
+</tbody>
+
+</table>
