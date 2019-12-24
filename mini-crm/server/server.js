@@ -12,8 +12,11 @@ MongoClient.connect('mongodb://localhost:27017')
    .then((client) => {
        const db = client.db('mini-crm')
        const candidateCollection = db.collection('candidates')
+       const companyCollection = db.collection('companies')
        const candidateRouter = createRouter(candidateCollection)
+       const companyRouter = createRouter(companyCollection)
        app.use('/api/candidates', candidateRouter)
+       app.use('/api/companies', companyRouter)
 
    })
    .catch(console.error)

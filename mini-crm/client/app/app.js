@@ -1,8 +1,23 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
+myApp.config(function ($routeProvider) {
+    
+    $routeProvider
+    
+    .when('/', {
+        templateUrl: 'pages/main.html',
+        controller: 'mainController'
+    })
+    
+    .when('/second', {
+        templateUrl: 'pages/second.html',
+        controller: 'secondController'
+    })
+    
+});
 
-
-myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) {
+myApp.controller('mainController', ['$scope', '$log', '$http', function($scope, $log, $http) {
+    
     $scope.name = ''
     $scope.job = ''
     
@@ -41,7 +56,7 @@ myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) 
     url: 'http://localhost:3000/api/candidates'
   }).then(function successCallback(response) {
       $scope.candidates = response.data
-    }, function errorCallback(response) {
+    }, function errorCallback() {
       console.error(error)
     });
   }
@@ -56,21 +71,19 @@ myApp.controller('mainController', ['$scope', '$http', function ($scope, $http) 
     
 }]);
 
+myApp.controller('secondController', ['$scope', '$log', '$http', function($scope, $log, $http) {
+    
+    $scope.companies = []
 
-myApp.controller('secondController', ['$scope', function($scope){
+    $http({
+        method: 'GET',
+        url: 'http://localhost:3000/api/companies'
+      }).then(function successCallback(response) {
+          $scope.companies = response.data
+        }, function errorCallback(response) {
+          console.error(error)
+        });
 
-   $scope.companyName = "sally"
 
-}])
-
-myApp.config(function ($routeProvider){
-  $routeProvider
-  .when('/candidates', {
-    templateUrl: 'candidates.html',
-    controller: 'mainController'
-  })
-  .when('/companies', {
-    templateUrl: 'companies.html',
-    controller: 'secondController'
-  })
-})
+    
+}]);
